@@ -1,203 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Harshitha Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <title>Square Black & White Calculator</title>
   <style>
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
     }
 
     body {
-      background: lavender;
-      color: #2c2c2c;
-      line-height: 1.6;
-    }
-
-    nav {
       display: flex;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      background: #e6e6fa;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f9f9f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    nav ul {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
+    .calculator {
+      width: 500px;          /* Increased size */
+      padding: 40px;         /* Adjusted padding */
+      background: #000;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      /* Removed border-radius to make it square */
     }
 
-    nav ul li a {
-      text-decoration: none;
-      color: #2c2c2c;
+    .display {
+      height: 80px;          /* Increased height for better visibility */
+      background: #fff;
+      color: #000;
+      font-size: 48px;       /* Larger font for display */
+      text-align: right;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      overflow: hidden;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    button {
+      font-size: 28px;       /* Larger font for buttons */
+      padding: 25px;
+      border: none;
+      border-radius: 12px;
+      background: #333;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #555;
+    }
+
+    .equal {
+      background: #fff;
+      color: #000;
       font-weight: bold;
     }
 
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 3rem 2rem;
-      flex-wrap: wrap;
-      background-color: #f5f5fd;
+    .equal:hover {
+      background: #e0e0e0;
     }
 
-    .hero-text {
-      max-width: 600px;
+    .clear {
+      background: #ff4d4d;
+      color: #fff;
     }
 
-    .hero-text h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-text p {
-      margin-bottom: 1.2rem;
-      color: #4d4d4d;
-    }
-
-    .buttons a {
-      display: inline-block;
-      padding: 0.8rem 1.5rem;
-      background: #7a57d1;
-      color: white;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-right: 1rem;
-      transition: background 0.3s;
-    }
-
-    .buttons a:hover {
-      background: #5e42ab;
-    }
-
-    .hero-image img {
-      width: 400px;
-      border-radius: 15px;
-    }
-
-    section {
-      padding: 2rem;
-    }
-
-    #skills, #projects, #achievements {
-      background-color: #f9f9ff;
-      margin-bottom: 2rem;
-      border-radius: 10px;
-    }
-
-    h2 {
-      margin-bottom: 1rem;
-    }
-
-    ul {
-      margin-left: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .project-gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 1rem;
-    }
-
-    .project-gallery img {
-      width: 300px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #7a57d1;
-      color: white;
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .hero-image img {
-        width: 90%;
-        margin-top: 2rem;
-      }
+    .clear:hover {
+      background: #e60000;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="logo"><strong>< Harshitha /></strong></div>
-    <ul>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#achievements">Achievements</a></li>
-    </ul>
-  </nav>
+  <div class="calculator">
+    <div id="display" class="display">0</div>
+    <div class="buttons">
+      <button onclick="appendNumber('7')">7</button>
+      <button onclick="appendNumber('8')">8</button>
+      <button onclick="appendNumber('9')">9</button>
+      <button onclick="chooseOperation('+')">+</button>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Hi all, I'm Harshitha 👋</h1>
-      <p>A BCA undergraduate at GITAM University, Bangalore with a passion for technology and development. Skilled in Java, HTML, CSS, and SQL.</p>
-      <p>I enjoy applying my skills to real-world problems and love working on challenging software projects. I'm particularly interested in software development, multimedia systems, and solving problems with code. I'm always looking for opportunities to collaborate and learn.</p>
-      <p>One of my completed projects is a <strong>Digital Watermarking System</strong>, built using Java Swing. It was an enriching experience working on GUI design and image processing for digital rights protection.</p>
-      <p>Beyond coding, I love participating in tech events, managing college fests, and exploring new ideas in software and innovation. I'm also keen on contributing to creative solutions that make a real impact.</p>
-      <div class="buttons">
-        <a href="mailto:bandiharshitha17@gmail.com">📧 Email</a>
-        <a href="https://www.linkedin.com/in/harshitha-bandi-2b7371293" target="_blank">🔗 LinkedIn</a>
-      </div>
+      <button onclick="appendNumber('4')">4</button>
+      <button onclick="appendNumber('5')">5</button>
+      <button onclick="appendNumber('6')">6</button>
+      <button onclick="chooseOperation('-')">-</button>
+
+      <button onclick="appendNumber('1')">1</button>
+      <button onclick="appendNumber('2')">2</button>
+      <button onclick="appendNumber('3')">3</button>
+      <button onclick="chooseOperation('*')">&times;</button>
+
+      <button onclick="appendNumber('0')">0</button>
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button class="equal" onclick="calculate()">=</button>
+      <button onclick="chooseOperation('/')">&divide;</button>
     </div>
-    <div class="hero-image">
-      <img src="portpic1.jpg" alt="Harshitha portrait">
-    </div>
-  </section>
+  </div>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Java</li>
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>SQL</li>
-    </ul>
-  </section>
+  <script>
+    let display = document.getElementById('display');
+    let currentInput = '';
+    let previousInput = '';
+    let operation = null;
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <h3>Digital Watermarking System</h3>
-    <p>This Java program is a simple digital watermarking tool that allows users to add text watermarks to images. It provides a graphical interface where users can select an image, enter watermark text, and apply it. The modified image is then saved to the Desktop. The program uses Java Swing for the interface and Java AWT for drawing the watermark on the image.</p>
-    <div class="project-gallery">
-      <img src="start.jpg" alt="Startup screen">
-      <img src="7076.jpg" alt="Interface in progress">
-      <img src="suces.jpg" alt="Success screen">
-      <img src="watermarked_image.jpg" alt="Final watermarked image">
-    </div>
-  </section>
+    function appendNumber(number) {
+      if (currentInput === '0' && number === '0') return;
+      if (currentInput === '0') currentInput = number;
+      else currentInput += number;
+      updateDisplay();
+    }
 
-  <section id="achievements">
-    <h2>Achievements</h2>
-    <ul>
-      <li>Award for Best Student Life Event hosted at college</li>
-      <li>Certificates for completing Java, HTML, and CSS courses from Infosys</li>
-    </ul>
-  </section>
+    function chooseOperation(op) {
+      if (currentInput === '') return;
+      if (previousInput !== '') calculate();
+      operation = op;
+      previousInput = currentInput;
+      currentInput = '';
+    }
 
-  <footer>
-    <p>&copy; 2025 Bandi Harshitha. All rights reserved.</p>
-  </footer>
+    function calculate() {
+      let result;
+      const prev = parseFloat(previousInput);
+      const current = parseFloat(currentInput);
+      if (isNaN(prev) || isNaN(current)) return;
+      switch (operation) {
+        case '+':
+          result = prev + current;
+          break;
+        case '-':
+          result = prev - current;
+          break;
+        case '*':
+          result = prev * current;
+          break;
+        case '/':
+          result = current !== 0 ? prev / current : 'Err';
+          break;
+        default:
+          return;
+      }
+      currentInput = result.toString();
+      operation = null;
+      previousInput = '';
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      display.innerText = currentInput || '0';
+    }
+
+    function clearDisplay() {
+      currentInput = '';
+      previousInput = '';
+      operation = null;
+      updateDisplay();
+    }
+  </script>
 
 </body>
 </html>
+
+     
+    
+     
+  
+      
+  
+     
+
+  
 
